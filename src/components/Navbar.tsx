@@ -12,12 +12,11 @@ interface NavbarProps {
 }
 
 export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal, config, developerConfig }: NavbarProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const isVisible = true;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Scroll logic to hide on scroll down, reveal on scroll up
+  // Scroll logic to activate glassmorphic styling on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -28,25 +27,11 @@ export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal
       } else {
         setIsScrolled(false);
       }
-
-      // Hide/Show navigation header based on direction
-      // ALWAYS keep visible on mobile to guarantee it is 100% sticky
-      if (window.innerWidth < 768) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
-        setIsVisible(false);
-      } else {
-        // Scrolling up
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const menuItems = [
     { label: 'Beranda', id: 'beranda', icon: <Globe className="h-4 w-4" /> },
@@ -64,7 +49,7 @@ export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out transform ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out transform ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       } ${
         isScrolled
@@ -115,7 +100,7 @@ export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal
             })}
           </nav>
 
-          {/* Right: Join / Status Badge & Dynamic Developer Info */}
+          {/* Right: Join / Status Badge */}
           <div className="hidden md:flex items-center gap-4">
             {developerConfig && (
               <div className="flex items-center gap-2 border-r border-zinc-800/60 pr-4 mr-1 text-right">
@@ -132,14 +117,14 @@ export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal
                 </div>
                 <span className="text-zinc-700 text-xs select-none">/</span>
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider">Community</span>
+                  <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider">Contact</span>
                   <a 
-                    href={developerConfig.community.website} 
+                    href={`https://wa.me/${developerConfig.contact.whatsapp}`} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-[11px] font-poppins font-bold text-[#DC143C] hover:text-red-400 transition-colors"
+                    className="text-[11px] font-poppins font-bold text-emerald-500 hover:text-emerald-400 transition-colors"
                   >
-                    {developerConfig.community.name}
+                    WhatsApp
                   </a>
                 </div>
               </div>
@@ -200,50 +185,39 @@ export default function Navbar({ currentPage, onChangePage, onOpenDeveloperModal
             })}
           </nav>
 
-          {/* Mobile Developer & Community Info inside navigation */}
+          {/* Mobile Developer Info */}
           {developerConfig && (
             <div className="pt-4 border-t border-zinc-900/80 space-y-3">
-              <span className="text-[9px] font-mono text-zinc-550 uppercase tracking-widest block px-1">
-                Developer & Community
+              <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest block px-1">
+                Developer Info
               </span>
-              <div className="bg-[#121316] border border-zinc-900 rounded-xl p-3.5 space-y-2.5">
+              <div className="bg-[#121316]/60 border border-zinc-900 rounded-xl p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-zinc-400 font-medium">Developed By:</span>
+                  <span className="text-zinc-400 font-medium font-poppins">Developed By:</span>
                   <a 
                     href={developerConfig.website.portfolio}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-[#DC143C] font-semibold transition-colors"
+                    className="text-white hover:text-[#DC143C] font-semibold transition-colors font-poppins"
                   >
                     {developerConfig.name}
                   </a>
                 </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-zinc-400 font-medium">Community:</span>
-                  <a 
-                    href={developerConfig.community.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#DC143C] hover:text-red-400 font-semibold transition-colors"
-                  >
-                    {developerConfig.community.name}
-                  </a>
-                </div>
-
+                
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <a
-                    href={developerConfig.community.discord}
+                    href={developerConfig.website.portfolio}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold uppercase tracking-wider text-center text-zinc-300 hover:text-white bg-[#202127] hover:bg-zinc-800 border border-zinc-850 px-3 py-2 rounded-lg transition-all"
+                    className="text-[10px] font-bold uppercase tracking-wider text-center text-zinc-300 hover:text-white bg-[#202127] hover:bg-zinc-800 border border-zinc-800/80 px-3 py-2 rounded-lg transition-all font-poppins"
                   >
-                    Discord Dev
+                    Portfolio
                   </a>
                   <a
                     href={`https://wa.me/${developerConfig.contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] font-bold uppercase tracking-wider text-center text-white bg-[#DC143C] hover:bg-red-700 px-3 py-2 rounded-lg transition-all"
+                    className="text-[10px] font-bold uppercase tracking-wider text-center text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-2 rounded-lg transition-all font-poppins"
                   >
                     Hubungi WA
                   </a>

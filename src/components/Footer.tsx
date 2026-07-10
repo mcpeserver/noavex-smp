@@ -99,17 +99,6 @@ export default function Footer({ config, serverConfig, loading, onChangePage }: 
                     {config.name}
                   </a>
                 </li>
-                <li className="font-sans text-xs text-zinc-400">
-                  <span className="font-semibold text-zinc-300">Community: </span>
-                  <a
-                    href={config.community.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#DC143C] hover:text-red-400 font-semibold transition-colors"
-                  >
-                    {config.community.name}
-                  </a>
-                </li>
                 <li>
                   <a
                     href={config.website.portfolio}
@@ -130,28 +119,6 @@ export default function Footer({ config, serverConfig, loading, onChangePage }: 
                   >
                     <MessageCircle className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
                     WhatsApp Developer
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={config.community.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-poppins text-xs text-zinc-400 hover:text-white transition-colors duration-150 flex items-center gap-2 group"
-                  >
-                    <Globe2 className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    Website Komunitas Developer
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={config.community.discord}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-poppins text-xs text-zinc-400 hover:text-[#DC143C] transition-colors duration-150 flex items-center gap-2 group"
-                  >
-                    <Sparkles className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    Discord Komunitas Developer
                   </a>
                 </li>
               </ul>
