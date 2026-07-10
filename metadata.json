@@ -1,0 +1,6 @@
+{
+  "name": "Noavex SMP",
+  "description": "Dua Dunia, Dua Petualangan. Pilih jalanmu dan ciptakan kisahmu sendiri. Landing Page Minecraft Noavex SMP Premium & Modern.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

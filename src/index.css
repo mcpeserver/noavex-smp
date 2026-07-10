@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Poppins", "Manrope", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-minecraft: "Press Start 2P", "Silkscreen", monospace;
+  
+  --color-primary-custom: #8B0000;
+  --color-secondary-custom: #DC143C;
+  --color-accent-custom: #BFC4CF;
+  --color-bg-custom: #0B0B0D;
+  --color-surface-custom: #15161A;
+  --color-card-custom: #202127;
+  --color-success-custom: #49D17D;
+  --color-warning-custom: #FFC857;
+  --color-danger-custom: #FF6464;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-bg-custom);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0B0D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #202127;
+    border-radius: 5px;
+    border: 2px solid #0B0B0D;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #DC143C;
+  }
+}
+
+/* Keyframe animations for cinematic background features */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-200px) translateX(30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes fogMove {
+  0% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(-50px) scale(1.1); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+.animate-float-particle {
+  animation: floatUp 12s infinite linear;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
+
+.animate-fog {
+  animation: fogMove 25s infinite ease-in-out;
+}
